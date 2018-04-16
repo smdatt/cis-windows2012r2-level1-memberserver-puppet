@@ -28,4 +28,18 @@ class cis_windows_level1_memberserver::password_policy {
         provider => 'powershell',
     }
 
+    # Set Password complexity to Enabled
+    # cis-password-complexity-1.1.5
+    local_security_policy { 'Password must meet complexity requirements':
+        ensure       => present,
+        policy_value => '1'
+    }
+
+    # Set Store passwords using reversible encryption to Disabled
+    # cis-store-passwords-using-reversible-encryption-1.1.6
+    local_security_policy { 'Store passwords using reversible encryption':
+        ensure       => present,
+        policy_value => '0'
+    }
+
 }
