@@ -36,7 +36,7 @@ class cis_windows_level1_memberserver::user_rights {
   # cis-allow-login-rds-2.2.7
   local_security_policy { 'Allow log on through Remote Desktop Services':
     ensure       => present,
-    policy_value => '*S-1-5-32-555'
+    policy_value => '*S-1-5-32-544, *S-1-5-32-555'
   }
 
   # Set Ensure 'Back up files and directories' is set to Administrators
