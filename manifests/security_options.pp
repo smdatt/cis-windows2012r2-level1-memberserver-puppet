@@ -95,8 +95,6 @@ class cis_windows_level1_memberserver::security_options {
     policy_value => '1'
   }
 
-
-
   # Set Ensure Domain member: Disable machine account password changes is set to Disabled
   # cis-disable-machine-password-changes-2.3.6.4
   local_security_policy { 'Domain member: Disable machine account password changes':
@@ -120,4 +118,189 @@ class cis_windows_level1_memberserver::security_options {
 
   # Set Ensure Interactive logon: Do not display last user name is set to Enabled
   # cis-logon-dont-display-last-user-2.3.7.1
+  local_security_policy { 'Interactive logon: Do not display last user name':
+    ensure       => present,
+    policy_value => '1',
+  }
+
+  # Set Ensure Interactive logon: Do not require CTRL+ALT+DEL is set to Disabled
+  # cis-logon-ctrl-alt-del-2.3.7.2
+  local_security_policy { 'Interactive logon: Do not require CTRL+ALT+DEL':
+    ensure       => present,
+    policy_value => '0',
+  }
+
+  # Set Ensure Interactive logon: Machine inactivity limit is set to 900 or fewer seconds but not 0
+  # cis-logon-machine-inactivity-2.3.7.3
+  local_security_policy { 'Interactive logon: Machine inactivity limit':
+    ensure       => present,
+    policy_value => '900',
+  }
+
+  # Set Ensure Interactive logon: Message text for users attempting to log on is not blank
+  # cis-logon-message-text-2.3.7.4
+  local_security_policy { 'Interactive logon: Message text for users attempting to log on':
+    ensure       => present,
+    policy_value => 'Legal notice text template',
+  }
+  
+  # Set Ensure Interactive logon: Message title for users attempting to log on is not blank
+  # cis-logon-message-title-2.3.7.5
+  local_security_policy { 'Interactive logon: Message title for users attempting to log on':
+    ensure       => present,
+    policy_value => 'Legal notice title template',
+  }
+#SAFE
+  # Set Ensure Interactive logon: Number of previous logons to cache (in case domain controller is not available) is set to 4 or fewer
+  # cis-logon-cache-2.3.7.6
+  local_security_policy { 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)':
+    ensure       => present,
+    policy_value => '4',
+  }
+
+  # Set Ensure Interactive logon: Prompt user to change password before expiration is set to between 5 and 14 days
+  # cis-logon-change-password-prompt-2.3.7.7
+  local_security_policy { 'Interactive logon: Prompt user to change password before expiration':
+    ensure       => present,
+    policy_value => '7',
+  }
+
+  # Set Ensure Interactive logon: Require Domain Controller Authentication to unlock workstation is set to Enabled
+  # cis-logon-require-domain-to-unlock-2.3.7.8
+  local_security_policy { 'Interactive logon: Require Domain Controller authentication to unlock workstation':
+    ensure       => present,
+    policy_value => '1',
+  }
+  
+  # Set Ensure Interactive logon: Smart card removal behavior is set to Lock Workstation
+  # cis-logon-smartcard-removal-2.3.7.9
+  local_security_policy { 'Interactive logon: Smart card removal behavior':
+    ensure       => present,
+    policy_value => '1',
+  }
+
+  # Set Ensure Microsoft network client: Digitally sign communications (always) is set to Enabled
+  # cis-network-digital-sign-always-2.3.8.1
+  local_security_policy { 'Microsoft network client: Digitally sign communications (always)':
+    ensure       => present,
+    policy_value => '1',
+  }
+
+  # Set Ensure Microsoft network client: Digitally sign communications (if server agrees) is set to Enabled
+  # cis-network-digital-sign-agrees-2.3.8.2
+  local_security_policy { 'Microsoft network client: Digitally sign communications (if server agrees)':
+    ensure       => present,
+    policy_value => '1',
+  }
+
+  # Set Ensure Microsoft network client: Send unencrypted password to third-party SMB servers is set to Disabled
+  # cis-network-disable-unencrypted-smb-2.3.8.3
+  local_security_policy { 'Microsoft network client: Send unencrypted password to third-party SMB servers':
+    ensure       => present,
+    policy_value => '0',
+  }
+
+  # Set Microsoft network server: Amount of idle time required before suspending session
+  # cis-network-server-idle-before-suspend-2.3.9.1
+  local_security_policy { 'Microsoft network server: Amount of idle time required before suspending session':
+    ensure       => present,
+    policy_value => '10',
+  }
+
+  # Set Ensure Microsoft network server: Digitally sign communications (always) is set to Enabled
+  # cis-network-server-digital-sign-always-2.3.9.2
+  local_security_policy { 'Microsoft network server: Digitally sign communications (always)':
+    ensure       => present,
+    policy_value => '1',
+  }
+
+  # Set Microsoft network server: Digitally sign communications (if client agrees) is set to Enabled
+  # cis-network-server-digtial-asign-agrees-2.3.9.3
+  local_security_policy { 'Microsoft network server: Digitally sign communications (if client agrees)':
+    ensure       => present,
+    policy_value => '1',
+  }
+
+  # Set Ensure Microsoft network server: Disconnect clients when logon hours expire is set to Enabled
+  # cis-network-server-disconnect-clients-2.3.9.4
+  local_security_policy { 'Microsoft network server: Disconnect clients when logon hours expire':
+    ensure       => present,
+    policy_value => '1',
+  }
+
+  # Set Ensure Microsoft network server: Server SPN target name validation level is set to Accept if provided by client
+  # cis-network-server-spn-validation-level-2.3.9.5
+  local_security_policy { 'Microsoft network server: Server SPN target name validation level':
+    ensure       => present,
+    policy_value => '1',
+  }
+
+  # Set Ensure Network access: Allow anonymous SID/Name translation is set to Disabled
+  # cis-network-access-allow-anonymous-2.3.10.1
+  local_security_policy { 'Network access: Allow anonymous SID/name translation':
+    ensure       => present,
+    policy_value => '0',
+  }
+
+  # Set Ensure Network access: Do not allow anonymous enumeration of SAM accounts is set to Enabled
+  # cis-network-access-deny-anonymous-sam-2.3.10.2
+  local_security_policy { 'Network access: Do not allow anonymous enumeration of SAM accounts':
+    ensure       => present,
+    policy_value => '1',
+  }
+
+  # Set Ensure Network access: Do not allow anonymous enumeration of SAM accounts and shares is set to Enabled
+  # cis-network-access-deny-enumeration-of-sam-2.3.10.3
+  local_security_policy { 'Network access: Do not allow anonymous enumeration of SAM accounts and shares':
+    ensure       => present,
+    policy_value => '1',
+  }
+
+/* This block will cause vagrant provision (after vagrant up) to fail, disabling
+  # Set Ensure Network access: Do not allow storage of passwords and credentials for network authentication is set to Enabled
+  # cis-network-access-deny-storage-of-passwords-2.3.10.4
+  local_security_policy { 'Network access: Do not allow storage of passwords and credentials for network authentication':
+    ensure       => present,
+    policy_value => '1',
+  }
+*/
+  # Set Ensure Network access: Let Everyone permissions apply to anonymous users is set to Disabled
+  # cis-network-access-deny-everyone-for-anon-2.3.10.5
+  local_security_policy { 'Network access: Let Everyone permissions apply to anonymous users':
+    ensure       => present,
+    policy_value => '0',
+  }
+
+  # Configure Network access: Named Pipes that can be accessed anonymously
+  # cis-network-access-named-pipes-anon-2.3.10.6
+  local_security_policy { 'Network access: Named Pipes that can be accessed anonymously':
+    ensure       => present,
+    policy_value => [],
+  }
+/* need to sort formatting for textbox entry with newlines 
+  # Set Ensure Network access: Remotely accessible registry paths
+  # cis-network-access-remote-registry-2.3.10.7]
+  local_security_policy { 'Network access: Remotely accessible registry paths':
+    ensure       => present,
+    policy_value => "System\\CurrentControlSet\\Control\\ProductOptions System\\CurrentControlSet\\Control\\Server Applications
+    Software\\Microsoft\\Windows NT\\CurrentVersion"
+  } */
+/*
+  # Set Network access: Remotely accessible registry paths and sub-paths
+  # cis-network-access-remote-registry-subpaths-2.3.10.8
+  local_security_policy { 'Network access: Remotely accessible registry paths and sub-paths':
+    ensure       => present,
+    policy_value => 'System\CurrentControlSet\Control\Print\Printers,
+    System\CurrentControlSet\Services\Eventlog,
+    Software\Microsoft\OLAP Server,
+    Software\Microsoft\Windows NT\CurrentVersion\Print,
+    Software\Microsoft\Windows NT\CurrentVersion\Windows,
+    System\CurrentControlSet\Control\ContentIndex,
+    System\CurrentControlSet\Control\Terminal Server,
+    System\CurrentControlSet\Control\Terminal Server\UserConfig,
+    System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration,
+    Software\Microsoft\Windows NT\CurrentVersion\Perflib,
+    System\CurrentControlSet\Services\SysmonLog',
+  }
+*/
 }
