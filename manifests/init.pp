@@ -14,11 +14,7 @@
 class cis_windows_level1_memberserver {
   include cis_windows_level1_memberserver::account_lockout
   include cis_windows_level1_memberserver::password_policy
-  include cis_windows_level1_memberserver::audit_log_config
-  include cis_windows_level1_memberserver::ie_config
-  include cis_windows_level1_memberserver::password_policy
-  include cis_windows_level1_memberserver::powershell
-  include cis_windows_level1_memberserver::privacy
-  include cis_windows_level1_memberserver::rdp_config
+  include cis_windows_level1_memberserver::security_options
   include cis_windows_level1_memberserver::user_rights
+  include cis_windows_level1_memberserver::windows_firewall
 }
