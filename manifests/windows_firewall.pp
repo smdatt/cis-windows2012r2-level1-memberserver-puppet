@@ -32,7 +32,7 @@ class cis_windows_level1_memberserver::windows_firewall {
   registry_value { 'HKLM\Software\Policies\Microsoft\WindowsFirewall\DomainProfile\DefaultInboundAction':
     ensure => present,
     type   => dword,
-    data   => '1'
+    data   => 1
   }
 
   # Set Ensure Windows Firewall: Domain: Outbound connections is set to Allow
@@ -196,7 +196,7 @@ class cis_windows_level1_memberserver::windows_firewall {
   registry_key { 'HKLM\Software\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging':
     ensure => present
   }
-  
+
   # Set Ensure Windows Firewall: Public: Firewall state is set to On
   # cis-public-firewall-on-9.3.1
   registry_value { 'HKLM\Software\Policies\Microsoft\WindowsFirewall\PublicProfile\EnableFirewall':
