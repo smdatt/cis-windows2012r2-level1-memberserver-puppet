@@ -13,6 +13,7 @@
 #
 class cis_windows_level1_memberserver {
   include cis_windows_level1_memberserver::account_lockout
+  include cis_windows_level1_memberserver::administrative_templates
   include cis_windows_level1_memberserver::audit_policy
   include cis_windows_level1_memberserver::password_policy
   include cis_windows_level1_memberserver::security_options
