@@ -5,6 +5,102 @@
 
 class cis_windows_level1_memberserver::administrative_templates {
 
+  # 18.1.1.x key creation
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows\Personalization':
+    ensure => present
+  }
+
+  # Set Ensure Prevent enabling lock screen camera is set to Enabled
+  # cis-ensure-prevent-enabling-lock-screen-camera-is-set-to-enabled-18.1.1.1
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\Personalization\NoLockScreenCamera':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Prevent enabling lock screen slide show is set to Enabled
+  # cis-ensure-Prevent-enabling-lock-screen-slide-show-is-set-to-enabled-18.1.1.2
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\Personalization\NoLockScreenSlideshow':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # 18.2.x key creation
+  registry_key { 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\{D76B9641-3288-4f75-942D-087DE603E3EA}':
+    ensure => present
+  }
+
+  # Set Ensure LAPS AdmPwd GPO Extension / CSE is installed
+  # cis-ensure-laps-admpwd-gpo-extension-cse-is-installed-18.2.1
+  registry_value { 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\{D76B9641-3288-4f75-942D-087DE603E3EA}\DllName':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # 18.2.x key creation
+  registry_key { 'HKLM\SOFTWARE\Policies\Microsoft Services\AdmPwd':
+    ensure => present
+  }
+
+  # Set Ensure Do not allow password expiration time longer than required by policy is set to Enabled
+  # cis-ensure-do-not-allow-password-expiration-time-longer-than-required-by-policy-is-set-to-enabled-18.2.2
+  registry_value { 'HKLM\SOFTWARE\Policies\Microsoft Services\AdmPwd\PwdExpirationProtectionEnabled':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Enable Local Admin Password Management is set to Enabled
+  # cis-ensure-enable-local-admin-password-management-is-set-to-enabled-18.2.3
+  registry_value { 'HKLM\SOFTWARE\Policies\Microsoft Services\AdmPwd\AdmPwdEnabled':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Password Settings Password Complexity is set to Enabled
+  # cis-ensure-password-settings-password-complexity-is-set-to-enabled-18.2.4
+  registry_value { 'HKLM\SOFTWARE\Policies\Microsoft Services\AdmPwd\PasswordComplexity':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Password Settings: Password Length is set to Enabled: 15 or more
+  # cis-set-ensure-password-settings-password-length-is-set-to-enabled-15-or-more-18.2.5
+  registry_value { 'HKLM\SOFTWARE\Policies\Microsoft Services\AdmPwd\PasswordLength':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Password Settings: Password Age (Days) is set to Enabled: 30 or fewer
+  # cis-ensure-password-settings-password-age-days-is-set-to-enabled-30-or-fewer-18.2.6
+  registry_value { 'HKLM\SOFTWARE\Policies\Microsoft Services\AdmPwd\PasswordAgeDays':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure MSS: (AutoAdminLogon) Enable Automatic Logon (not recommended) is set to Disabled
+  # cis-ensure-mss-autoadminlogon-enable-automatic-logon-not-recommended-is-set-to-disabled-18.3.1
+  registry_value { 'HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure MSS: (DisableIPSourceRouting IPv6) IP source routing protection level (protects against packet spoofing) is set to Enabled
+  # cis-ensure-mss-disableipsourcerouting-ipv6-ip-source-routing-protection-level-protects-against-packet-spoofing-is-set-to-enabled-18.3.2
+  registry_value { 'HKLM\System\CurrentControlSet\Services\Tcpip6\Parameters\DisableIPSourceRouting':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+
   # Set Ensure 'MSS: (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing) is set to Enabled
   # cis-ensure-mss-disableipsourcerouting-ip-source-routing-protection-level-protects-against-packet-spoofing-is-set-to-enabled-18.3.3
   registry_value { 'HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\DisableIPSourceRouting':
@@ -678,10 +774,7 @@ class cis_windows_level1_memberserver::administrative_templates {
     data   => '0'
   }
 
-   # 18.9.70.x key creation
-  registry_key { 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System':
-    ensure => present
-  }
+
 
   # Set Ensure Sign-in last interactive user automatically after a system-initiated restart is set to Disabled
   # cis-ensure-sign-in-last-interactive-user-automatically-after-a-system-initiated-restart-is-set-to-disabled-18.9.70.1
@@ -689,11 +782,6 @@ class cis_windows_level1_memberserver::administrative_templates {
     ensure => present,
     type   => dword,
     data   => '0'
-  }
-
-    # 18.9.79.x key creation
-  registry_key { 'HKLM\Software\Policies\Microsoft\Windows\PowerShell':
-    ensure => present
   }
 
   registry_key { 'HKLM\Software\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging':
