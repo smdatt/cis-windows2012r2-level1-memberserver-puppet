@@ -5,6 +5,556 @@
 
 class cis_windows_level1_memberserver::administrative_templates {
 
+  # Set Ensure 'MSS: (DisableIPSourceRouting) IP source routing protection level (protects against packet spoofing) is set to Enabled
+  # cis-ensure-mss-disableipsourcerouting-ip-source-routing-protection-level-protects-against-packet-spoofing-is-set-to-enabled-18.3.3
+  registry_value { 'HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\DisableIPSourceRouting':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure MSS EnableICMPRedirect Allow ICMP redirects to override OSPF generated routes is set to Disabled
+  # cis-ensure-mss-enableicmpredirect-allow-icmp-redirects-to-override-ospf-generated-routes-is-set-to-disabled-18.3.4
+  registry_value { 'HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\EnableICMPRedirect':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure MSS: (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers
+  # cis-ensure-mss-nonamereleaseondemand-allow-the-computer-to-ignore-netbios-name-release-requests-except-from-winsservers-18.3.6
+  registry_value { 'HKLM\System\CurrentControlSet\Services\NetBT\Parameters\nonamereleaseondemand':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+    # Set Ensure MSS: (SafeDllSearchMode) Enable Safe DLL search mode (recommended) is set to Enabled
+  # cis-ensure-mss-safedllsearchmode-enable-safe-dll-search-mode-recommended-is-set-to-enabled-18.3.8
+  registry_value { 'HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\SafeDllSearchMode':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires is set to Enabled: 5 or fewer seconds
+  # cis-ensure-mss-screensavergraceperiod-the-time-in-seconds-before-the-screen-saver-grace-period-expires-18.3.9
+  registry_value { 'HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\ScreenSaverGracePeriod':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning is Enabled
+  # cis-ensure-mss-WarningLevel-percentage-threshold-for-the-security-event-log-at-which-the-system-will-generate-a-warning-18.3.12
+  registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\Eventlog\Security\WarningLevel':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Prohibit installation and configuration of Network Bridge on your DNS domain network is set to Enabled
+  # cis-ensure-prohibit-installation-and-configuration-of-network-bridge-on-yourdns-domain-network-is-set-to-enabled-18.4.10.2
+  registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Network Connections\NC_AllowNetBridge_NLA':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Require domain users to elevate when setting a networks locationis set to Enabled
+  # cis-ensure-require-domain-users-to-elevate-when-setting-a-networks-location-is-set-to-enabled-18.4.10.3
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\Network Connections\NC_StdDomainUserSetLocation':
+    ensure => present, 
+    type   => dword,
+    data   => '1'
+  }
+
+  # 18.4.13.x key creation
+  registry_key { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths':
+    ensure => present
+  }
+
+  # Set Ensure Hardened UNC Paths is set to Enabled with Require Mutual Authentication
+  # cis-ensure-hardened-unc-paths-is-set-to-enabled-with-require-mutual-authentication-18.4.13.1
+  registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths\\\*\NETLOGON':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+    registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths\\\*\SYSVOL':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # 18.4.20.x key creation
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows\WcmSvc\GroupPolicy':
+    ensure => present
+  }
+
+  # Set Ensure Minimize the number of simultaneous connections to the Internet or a Windows Domain is set to Enabled
+  # cis-Ensure-minimize-the-number-of-simultaneous-connections-to-the-internet-or-a-windows-domain-is-set-to-enabled-18.4.20.1
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\WcmSvc\GroupPolicy\fMinimizeConnections':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # 18.6.x key creation
+  registry_key { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System':
+    ensure => present
+  }
+
+  # Set Ensure Apply UAC restrictions to local accounts on network logons is set to Enabled
+  # cis-Ensure-apply-uac-restrictions-to-local-accounts-on-network-logons-is-set-to-enabled-18.6.1
+  registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure WDigest Authentication is set to Disabled
+  # cis-ensure-wdigest-authentication-is-set-to-disabled-18.6.2
+  registry_value { 'HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest\UseLogonCredential':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Include command line in process creation events is set to Disabled
+  # cis-ensure-include-command-line-in-process-creation-events-is-set-to-disabled-18.8.2.1
+  registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\ProcessCreationIncludeCmdLine_Enabled':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # 18.8.11.x key creation
+  registry_key { 'HKLM\System\CurrentControlSet\Policies\EarlyLaunch':
+    ensure => present
+  }
+
+  # Set Ensure Boot-Start Driver Initialization Policy is set to Enabled: Good unknown and bad but critical
+  # cis-ensure-boot-start-driver-initialization-policy-is-set-to-enabled-good-unknown-and-bad-but-critical-18.8.11.1
+  registry_value { 'HKLM\System\CurrentControlSet\Policies\EarlyLaunch\DriverLoadPolicy':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # 18.8.18.x key creation
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}':
+    ensure => present
+  }
+
+  # Set Ensure Configure registry policy processing: Do not apply during periodic background processing is set to Enabled: FALSE
+  # cis-ensure-configure-registry-policy-processing-do-not-apply-during-periodic-background-processing-is-set-to-enabled-false-18.8.18.2
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}\NoBackgroundPolicy':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Configure registry policy processing: Process even if the Group Policy objects have not changed is set to Enabled: TRUE
+  # cis-ensure-configure-registry-policy-processing-process-even-if-the-group-policy-objects-have-not-changed-is-set-to-enabled-true-18.8.18.3
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}\NoGPOListChanges':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Turn off background refresh of Group Policy is set to Disabled
+  # cis-ensure-turn-off-background-refresh-of-group-policy-is-set-to-Disabled-18.8.18.4
+  registry_value { 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\DisableBkGndGroupPolicy':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Do not display network selection UI is set to Enabled
+  # cis-ensure-do-not-display-network-selection-ui-is-set-to-enabled-18.8.24.1
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\System\DontDisplayNetworkSelectionUI':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Do not enumerate connected users on domain-joined computers is set to Enabled
+  # cis-ensure-do-not-enumerate-connected-users-on-domain-joined-computers-is-set-to-enabled-18.8.24.2
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\System\DontEnumerateConnectedUsers':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Enumerate local users on domain-joined computers is set to Disabled
+  # cis-ensure-enumerate-local-users-on-domain-joined-computers-is-set-to-disabled-18.8.24.3
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\System\EnumerateLocalUsers':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Turn off app notifications on the lock screen is set to Enabled
+  # cis-ensure-turn-off-app-notifications-on-the-lock-screen-is-set-to-enabled-18.8.24.4
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\System\DisableLockScreenAppNotifications':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Turn on convenience PIN sign-in is set to Disabled
+  # cis-Ensure-turn-on-convenience-pin-sign-in-is-set-to-disabled-18.8.24.5
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\System\AllowDomainPINLogon':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Configure Offer Remote Assistance is set to Disabled
+  # cis-ensure-configure-offer-remote-assistance-is-set-to-disabled-18.8.30.1
+  registry_value { 'HKLM\Software\policies\Microsoft\Windows NT\Terminal Services\fAllowUnsolicited':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Configure Solicited Remote Assistance is set to Disabled
+  # cis-ensure-configure-solicited-remote-assistance-is-set-to-disabled-18.8.30.2
+  registry_value { 'HKLM\Software\policies\Microsoft\Windows NT\Terminal Services\fAllowToGetHelp':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # 18.8.31.x key creation
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows NT\Rpc':
+    ensure => present
+  }
+
+  # Set Ensure Enable RPC Endpoint Mapper Client Authentication is set to Enabled
+  # cis-ensure-enable-rpc-endpoint-mapper-client-authentication-is-set-to-enabled-18.8.31.1
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows NT\Rpc\EnableAuthEpResolution':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Ensure Allow Microsoft accounts to be optional is set to Enabled
+  # cis-allow-microsoft-accounts-to-be-optional-is-set-to-enabled-18.9.6.1
+  registry_value { 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\MSAOptional':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Disallow Autoplay for non-volume devices is set to Enabled
+  # cis-ensure-disallow-autoplay-for-non-volume-devices-is-set-to-enabled-18.9.8.1
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\Explorer\NoAutoplayfornonVolume':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Set the default behavior for AutoRun is set to Enabled: Do not execute any autorun commands
+  # cis-ensure-set-the-default-behavior-for-autoRun-is-set-to-enabled-do-not-execute-any-autorun-commands-18.9.8.2
+  registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoAutorun':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Turn off Autoplay is set to Enabled: All drives
+  # cis-ensure-turn-off-autoplay-is-set-to-enabled-all-drives-18.9.8.3
+  registry_value { 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoDriveTypeAutoRun':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # 18.9.13.x key creation
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows\CredUI':
+    ensure => present
+  }
+
+  registry_key { 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\CredUI':
+    ensure => present
+  }
+
+
+  # Set Ensure Do not display the password reveal button is set to Enabled
+  # cis-ensure-do-not-display-the-password-reveal-button-is-set-to-enabled-18.9.13.1
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\CredUI\DisablePasswordReveal':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Enumerate administrator accounts on elevation is set to Disabled
+  # cis-ensure-enumerate-administrator-accounts-on-elevation-is-set-to-disabled-18.9.13.2
+  registry_value { 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\CredUI\EnumerateAdministrators':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # 18.9.22.x key creation
+  registry_key { 'HKLM\Software\Policies\Microsoft\EMET\SysSettings':
+    ensure => present
+  }
+
+  registry_key { 'HKLM\Software\Policies\Microsoft\EMET\Defaults':
+    ensure => present
+  }
+
+  # Set Ensure EMET 5.5 or higher is installed
+  # cis-ensure-emet-5.5-or-higher-is-installed-18.9.22.1
+  #include chocolatey
+  #package { 'emet':
+     #ensure   => installed,
+     #provider => 'chocolatey',
+  # }
+  
+  # Set Ensure Default Action and Mitigation Settings is set to Enabled (plus subsettings)
+  # cis-ensure-default-action-and-mitigation-settings-is-set-to-enabled-18.9.22.2
+  registry_value { 'HKLM\Software\Policies\Microsoft\EMET\SysSettings\AntiDetours':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+   registry_value { 'HKLM\Software\Policies\Microsoft\EMET\SysSettings\BannedFunctions':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+   registry_value { 'HKLM\Software\Policies\Microsoft\EMET\SysSettings\DeepHooks':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+   registry_value { 'HKLM\Software\Policies\Microsoft\EMET\SysSettings\ExploitAction':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Default Protections for Internet Explorer is set to Enabled
+  # cis-ensure-default-protections-for-internet-explorer-is-set-to-Enabled-18.9.22.3
+  registry_value { 'HKLM\Software\Policies\Microsoft\EMET\Defaults\IE':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Default Protections for Popular Software is set to Enabled
+  # cis-ensure-default-protections-for-popular-software-is-set-to-Enabled-18.9.22.4
+  registry_value { 'HKLM\Software\Policies\Microsoft\EMET\Defaults':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Default Protections for Recommended Software is set to Enabled
+  # cis-ensure-default-protections-for-recommended-software-is-set-to-enabled-18.9.22.5
+  #registry_value { 'HKLM\Software\Policies\Microsoft\EMET\Defaults':
+   # ensure => present,
+   # type   => dword,
+   # data   => '1'
+ # }
+  
+  # Set Ensure System ASLR is set to Enabled: Application Opt-In
+  # cis-Ensure-system-aslr-is-set-to-enabled-application-opt-in-18.9.22.6
+  registry_value { 'HKLM\Software\Policies\Microsoft\EMET\SysSettings\ASLR':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure System DEP is set to Enabled: Application Opt-Out
+  # cis-ensure-system-dep-is-set-to-enabled-application-opt-out-18.9.22.7
+  registry_value { 'HKLM\Software\Policies\Microsoft\EMET\SysSettings\DEP':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure System SEHOP is set to Enabled: Application Opt-Out
+  # cis-ensure-system-sehop-is-set-to-enabled-application-opt-out-18.9.22.8
+  registry_value { 'HKLM\Software\Policies\Microsoft\EMET\SysSettings\SEHOP':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # 18.9.24.1.x key creation
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\Application':
+    ensure => present
+  }
+
+  # Set Ensure Application: Control Event Log behavior when the log file reaches its maximum size is set to Disabled
+  # cis-ensure-application-control-event-log-behavior-when-the-log-file-reaches-its-maximum-size-is-set-to-disabled-18.9.24.1.1
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\Application\Retention':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Application: Specify the maximum log file size (KB) is set to Enabled: 32,768 or greater
+  # cis-ensure-application-specify-the-maximum-log-file-size-KB-is-set-to-enabled-32768-or-greater-18.9.24.1.2
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\Application\MaxSize':
+    ensure => present,
+    type   => dword,
+    data   => '32768'
+  }
+
+  # 18.9.24.2.x key creation
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\Security':
+    ensure => present
+  }
+
+  # Set Ensure Security: Control Event Log behavior when the log file reaches its maximum size is set to Disabled
+  # cis-ensure-security-control-event-log-behavior-when-the-log-file-reaches-its-maximum-size-is-set-to-disabled-18.9.24.2.1
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\Security\Retention':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Security: Specify the maximum log file size (KB) is set to Enabled: 196,608 or greater
+  # cis-ensure-security-specify-the-maximum-log-file-size-KB-is-set-to-enabled-18.9.24.2.2
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\Security\MaxSize':
+    ensure => present,
+    type   => dword,
+    data   => '196608'
+  }
+
+  # 18.9.24.3.x key creation
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\Setup':
+    ensure => present
+  }
+
+  # Set Ensure Setup: Control Event Log behavior when the log file reaches its maximum size is set to Disabled
+  # cis-ensure-setup-control-event-log-behavior-when-the-log-file-reaches-its-maximum-size-is-set-to-disabled-18.9.24.3.1
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\Setup\Retention':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Setup: Specify the maximum log file size (KB) is set to Enabled: 32,768 or greater
+  # cis-ensure-setup-specify-the-maximum-log-file-size-KB-is-set-to-enabled-18.9.24.3.2
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\Setup\MaxSize':
+    ensure => present,
+    type   => dword,
+    data   => '32768'
+  }
+
+  # 18.9.24.4.x key creation
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\System':
+    ensure => present
+  }
+
+  # Set Ensure System: Control Event Log behavior when the log file reaches its maximum size is set to Disabled
+  # cis-ensure-system-control-event-log-behavior-when-the-log-file-reaches-its-maximum-size-is-set-to-disabled-18.9.24.4.1
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\System\Retention':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure System Specify the maximum log file size (KB) is set to Enabled: 32,768 or greater
+  # cis-ensure-system-specify-the-maximum-log-file-size-KB-is-set-to-enabled-18.9.24.4.2
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\EventLog\System\MaxSize':
+    ensure => present,
+    type   => dword,
+    data   => '32768'
+  }
+
+  # 18.9.28.x key creation
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows\System':
+    ensure => present
+  }
+
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows\Explorer':
+    ensure => present
+  }
+
+  # Set Ensure Configure Windows SmartScreen is set to Enabled: Require approval from an administrator before running downloaded unknown software
+  # cis-ensure-configure-windows-smartScreen-is-set-to-enabled-require-approval-from-an-administrator-before-running-downloaded-unknown-software-18.9.28.2
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\System\EnableSmartScreen':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Turn off Data Execution Prevention for Explorer' is set to Disabled
+  # cis-ensure-turn-off-data-execution-prevention-for-explorer-is-set-to-disabled-18.9.28.3
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\Explorer\NoDataExecutionPrevention':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure 'Turn off heap termination on corruption' is set to Disabled
+  # cis-ensure-turn-off-heap-termination-on-corruption-is-set-to-disabled-18.9.28.4
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\Explorer\NoHeapTerminationOnCorruption':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Turn off shell protocol protected mode is set to Disabled
+  # cis-ensure-turn-off-shell-protocol-protected-mode-is-set-to-disabled-18.9.28.5
+  registry_value { 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\PreXPSP2ShellProtocolBehavior':
+    ensure => present,
+    type   => dword,
+    data   => '0'
+  }
+
+  # Set Ensure Do not allow drive redirection is set to Enabled
+  # cis-ensure-do-not-allow-drive-redirection-is-set-to-enabled-18.9.48.2.2
+  registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\DisablePasswordSaving':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Do not allow drive redirection is set to Enabled
+  # cis-ensure-do-not-allow-drive-redirection-is-set-to-enabled-18.9.48.3.3.2
+  registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fDisableCdm':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Always prompt for password upon connection is set to Enabled
+  # cis-ensure-always-prompt-for-password-upon-connection-is-set-to-enabled-18.9.48.3.9.1
+  registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\fPromptForPassword':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Require secure RPC communication is set to Enabled
+  # cis-ensure-require-secure-RPC-communication-is-set-to-enabled-18.9.48.3.9.2
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services\fEncryptRPCTraffic':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
+  # Set Ensure Set client connection encryption level is set to Enabled: High Level
+  # cis-ensure-set-client-connection-encryption-level-is-set-to-enabled-high-level-18.9.48.3.9.3
+  registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\MinEncryptionLevel':
+    ensure => present,
+    type   => dword,
+    data   => '1'
+  }
+
   # Set Ensure Do not delete temp folders upon exit is set to Disabled
   # cis-ensure-do-not-delete-temp-folders-upon-exit-is-set-to-disabled-18.9.48.3.11.1
   registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\DeleteTempDirsOnExit':
