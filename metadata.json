@@ -1,0 +1,43 @@
+{
+    "operatingsystem_support": [
+        {
+            "operatingsystem": "Windows",
+            "operatingsystemrelease": [
+                "Server 2012 R2"
+            ]
+        }
+    ],
+    "requirements": [
+        {
+            "name": "puppet",
+            "version_requirement": ">=4.6.1 <5.0.0"
+        }
+    ],
+    "name": "smdatt-cis_windows2012r2_level1_memberserver_puppet",
+    "version": "1.0.0",
+    "source": "https://github.com/smdatt/cis-windows2012r2-level1-memberserver-puppet",
+    "author": "Steven Datt",
+    "license": "MIT",
+    "summary": "Sets local policy and registry settings on Windows systems required to meet CIS hardening guidelines.",
+    "description": "This module provides classes for ensuring that a Windows system is compliant with the CIS level 1 member server guidelines",
+    "project_page": "https://github.com/smdatt/cis-windows2012r2-level1-memberserver-puppet",
+    "issues_url": "https://github.com/smdatt/cis-windows2012r2-level1-memberserver-puppet/issues",
+    "dependencies": [
+        {
+            "name": "puppetlabs/stdlib",
+            "version_requirement": ">= 4.13.0 < 5.0.0"
+        },
+        {
+            "name": "puppetlabs/powershell",
+            "version_requirement": ">= 2.0.0 < 3.0.0"
+        },
+        {
+            "name": "puppetlabs/registry",
+            "version_requirement": ">= 1.1.4 < 2.0.0"
+        },
+        {
+            "name": "ayohrling/local_security_policy",
+            "version_requirement": ">= 0.6.1 < 1.0.0"
+        }
+    ]
+}
