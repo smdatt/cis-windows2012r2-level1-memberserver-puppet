@@ -2,6 +2,7 @@
 #
 # Configures Administrative Templates
 #
+# 18.4.13.1 omitted. Puppet doesn't apply path
 
 class cis_win2012r2_l1_memberserver::administrative_templates {
 
@@ -169,7 +170,7 @@ class cis_win2012r2_l1_memberserver::administrative_templates {
   registry_key { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths':
     ensure => present
   }
-
+/* Puppet doesn't like applying this rule 
   # Set Ensure Hardened UNC Paths is set to Enabled with Require Mutual Authentication
   # cis-ensure-hardened-unc-paths-is-set-to-enabled-with-require-mutual-authentication-18.4.13.1
   registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths\\\*\NETLOGON':
@@ -183,7 +184,7 @@ class cis_win2012r2_l1_memberserver::administrative_templates {
     type   => dword,
     data   => '1'
   }
-
+*/
   # 18.4.20.x key creation
   registry_key { 'HKLM\Software\Policies\Microsoft\Windows\WcmSvc\GroupPolicy':
     ensure => present
