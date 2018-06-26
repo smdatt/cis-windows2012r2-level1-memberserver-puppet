@@ -6,7 +6,7 @@ class cis_win2012r2_l1_memberserver::security_options {
 
   # Set Ensure Accounts: Administrator account status is set to Disabled
   # cis-administrator-account-status-2.3.1.1
-  local_security_policy { 'Accounts: Administrator account status':
+  local_security_policy { 'EnableAdminAccount':
     ensure       => present,
     policy_value => '0',
   }
