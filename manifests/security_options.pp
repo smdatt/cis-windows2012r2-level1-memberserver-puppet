@@ -20,7 +20,7 @@ class cis_win2012r2_l1_memberserver::security_options {
 
   # Set Ensure Accounts: Guest account status is set to Disabled
   # cis-accounts-guest-account-status-2.3.1.3
-  local_security_policy { 'Accounts: Guest account status':
+  local_security_policy { 'EnableGuestAccount':
     ensure       => present,
     policy_value => '0',
   }
