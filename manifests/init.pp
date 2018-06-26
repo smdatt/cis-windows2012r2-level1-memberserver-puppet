@@ -1,4 +1,4 @@
-# == Class: cis_windows_level1_memberserver
+# == Class: cis_win2012r2_l1_memberserver
 #
 # Configuring local policies and registry settings to meet security hardening specifications for CIS Level 1 Windows Member Server
 #
@@ -11,7 +11,7 @@
 #
 # Copyright 2018 Claranet
 #
-class cis_windows_level1_memberserver {
+class cis_win2012r2_l1_memberserver {
   include cis_windows_level1_memberserver::account_lockout
   include cis_windows_level1_memberserver::administrative_templates
   include cis_windows_level1_memberserver::audit_policy
