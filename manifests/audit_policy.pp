@@ -1,9 +1,9 @@
-# == Class: cis_windows_level1_memberserver::audit_policy
+# == Class: cis_win2012r2_l1_memberserver::audit_policy
 #
 # Configures Advanced Audit Policy
 #
 
-class cis_windows_level1_memberserver::audit_policy {
+class cis_win2012r2_l1_memberserver::audit_policy {
 
   # Set Ensure Audit Credential Validation is set to Success and Failure
   # cis-audit-credential-validation-17.1.1

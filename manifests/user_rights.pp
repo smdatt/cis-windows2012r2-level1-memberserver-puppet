@@ -1,8 +1,8 @@
-# == Class: cis_windows_level1_memberserver::user_rights
+# == Class: cis_win2012r2_l1_memberserver::user_rights
 #
 # Configures user access local polocies
 #
-class cis_windows_level1_memberserver::user_rights {
+class cis_win2012r2_l1_memberserver::user_rights {
 
   # Set Access Credential Manager as a trusted caller to No One
   # cis-access-cred-manager-2.2.1

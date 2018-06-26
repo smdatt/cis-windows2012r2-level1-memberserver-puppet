@@ -1,9 +1,9 @@
-# == Class: cis_windows_level1_memberserver::user_templates
+# == Class: cis_win2012r2_l1_memberserver::user_templates
 #
 # Configures Administrative Templates for Users
 #
 
-class cis_windows_level1_memberserver::user_templates {
+class cis_win2012r2_l1_memberserver::user_templates {
 /*
   file {
     'C:\\Windows\\system32\\grouppolicy':

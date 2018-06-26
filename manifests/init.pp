@@ -12,12 +12,12 @@
 # Copyright 2018 Claranet
 #
 class cis_win2012r2_l1_memberserver {
-  include cis_windows_level1_memberserver::account_lockout
-  include cis_windows_level1_memberserver::administrative_templates
-  include cis_windows_level1_memberserver::audit_policy
-  include cis_windows_level1_memberserver::password_policy
-  include cis_windows_level1_memberserver::security_options
-  include cis_windows_level1_memberserver::user_rights
-  #include cis_windows_level1_memberserver::user_templates
-  include cis_windows_level1_memberserver::windows_firewall
+  include cis_win2012r2_l1_memberserver::account_lockout
+  include cis_win2012r2_l1_memberserver::administrative_templates
+  include cis_win2012r2_l1_memberserver::audit_policy
+  include cis_win2012r2_l1_memberserver::password_policy
+  include cis_win2012r2_l1_memberserver::security_options
+  include cis_win2012r2_l1_memberserver::user_rights
+  #include cis_win2012r2_l1_memberserver::user_templates
+  include cis_win2012r2_l1_memberserver::windows_firewall
 }

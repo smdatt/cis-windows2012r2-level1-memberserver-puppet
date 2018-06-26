@@ -1,8 +1,8 @@
-# == Class: cis_windows_level1_memberserver::security_options
+# == Class: cis_win2012r2_l1_memberserver::security_options
 #
 # Configures security options
 #
-class cis_windows_level1_memberserver::security_options {
+class cis_win2012r2_l1_memberserver::security_options {
 
   # Set Ensure Accounts: Administrator account status is set to Disabled
   # cis-administrator-account-status-2.3.1.1

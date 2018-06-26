@@ -1,4 +1,4 @@
-# == Class: cis_windows_level1_memberserver::windows_firewall
+# == Class: cis_win2012r2_l1_memberserver::windows_firewall
 #
 # Configures Windows Firewall
 #
@@ -8,7 +8,7 @@
   # user specified?: HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\$profile\
   # gpo: HKLM\SOFTWARE\Policies\Microsoft\WindowsFirewall\$profile\Logging\LogFilePath
 
-class cis_windows_level1_memberserver::windows_firewall {
+class cis_win2012r2_l1_memberserver::windows_firewall {
 
   # 9.1.x key creation
   registry_key { 'HKLM\Software\Policies\Microsoft\WindowsFirewall\DomainProfile':

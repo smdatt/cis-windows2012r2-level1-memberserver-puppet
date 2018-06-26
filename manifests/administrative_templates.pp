@@ -1,9 +1,9 @@
-# == Class: cis_windows_level1_memberserver::administrative_templates
+# == Class: cis_win2012r2_l1_memberserver::administrative_templates
 #
 # Configures Administrative Templates
 #
 
-class cis_windows_level1_memberserver::administrative_templates {
+class cis_win2012r2_l1_memberserver::administrative_templates {
 
   # 18.1.1.x key creation
   registry_key { 'HKLM\Software\Policies\Microsoft\Windows\Personalization':

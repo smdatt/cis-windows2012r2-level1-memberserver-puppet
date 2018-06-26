@@ -1,8 +1,8 @@
-# == Class: cis_windows_level1_memberserver::account_lockout
+# == Class: cis_win2012r2_l1_memberserver::account_lockout
 #
 # Configures account lockout thresholds and durations
 #
-class cis_windows_level1_memberserver::account_lockout {
+class cis_win2012r2_l1_memberserver::account_lockout {
 
   # Set Account lockout duration to 15 or more minutes
   # cis-account-lockout-duration-1.2.1

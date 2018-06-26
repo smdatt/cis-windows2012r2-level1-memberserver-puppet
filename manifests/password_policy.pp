@@ -1,8 +1,8 @@
-# == Class: cis_windows_level1_memberserver::password_policy
+# == Class: cis_win2012r2_l1_memberserver::password_policy
 #
 # Configures password policies
 #
-class cis_windows_level1_memberserver::password_policy {
+class cis_win2012r2_l1_memberserver::password_policy {
 
     # Set Enforce password history to 24 or more passwords
     # cis-enforce-password-history-1.1.1
